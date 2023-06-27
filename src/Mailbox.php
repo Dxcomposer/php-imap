@@ -1442,6 +1442,9 @@ class Mailbox
             case 'utf-8': // Charset UTF-8 is OK
                 $newString .= $string;
                 break;
+            case 'gb2312':
+                $newString.=@\iconv('GBK', 'UTF-8', $string);
+                break;
             default:
                 // If charset exists in mb_list_encodings(), convert using mb_convert function
                 if (\in_array($fromCharset, $this->lowercase_mb_list_encodings(), true)) {
